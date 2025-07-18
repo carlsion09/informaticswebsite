@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tuberculosis - Nursing Informatics</title>
+  <style>
+    :root {
+      --blue: #005eb8;
+      --light-blue: #e3f2fd;
+      --gray: #f9f9f9;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: var(--gray);
+      color: #333;
+    }
+
+    header {
+      background-color: var(--blue);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .info-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .info-buttons button {
+      padding: 12px 20px;
+      background-color: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: background-color 0.3s ease;
+    }
+
+    .info-buttons button:hover {
+      background-color: #004796;
+    }
+
+    /* MODAL STYLES */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 99;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      background-color: rgba(0,0,0,0.6);
+      padding-top: 60px;
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: var(--shadow);
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-content img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .modal h2 {
+      color: var(--blue);
+      margin-top: 0;
+    }
+
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: black;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    @media (max-width: 600px) {
+      .info-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Tuberculosis (TB)</h1>
+    <p>Nursing Informatics Presentation</p>
+  </header>
+
+  <div class="container">
+    <div class="intro">
+      <section style="padding: 2rem; max-width: 800px; margin: auto; font-family: Arial, sans-serif; line-height: 1.6;">
+  <h1 style="text-align: center; color: #004d40;">What is <span style="color: #d32f2f;">Tuberculosis (TB)</span>?</h1>
+  <p>
+    <span style="font-weight: bold;">Tuberculosis (TB)</span> is a serious disease caused by a bacterial infection, most often affecting the lungs. 
+    However, it doesn’t stop there — it can also spread to other parts of the body such as the spine, brain, or kidneys. 
+    It spreads through the air when a person with active TB in their lungs coughs, sneezes, speaks, or sings.
+  </p>
+  <p>
+    Interestingly, not everyone infected with TB becomes sick. Some people carry the bacteria without showing any symptoms — 
+    this is known as <span style="font-weight: bold; color: #1976d2;">latent TB</span>. In this stage, the bacteria are present in the body 
+    but remain inactive or “asleep.” People with latent TB don’t feel sick and aren’t contagious, but they still carry the risk of 
+    developing <span style="font-weight: bold; color: #f57c00;">active TB</span> later on.
+  </p>
+  <p>
+    It’s estimated that around 13 million people in the U.S. alone have latent TB. In many cases, this infection can stay dormant for 
+    years — even a lifetime — without ever causing illness.
+  </p>
+  <p>
+    However, if a person’s immune system weakens due to conditions like HIV, cancer treatment, poor nutrition, or aging, the TB 
+    bacteria can "wake up" and become active. When that happens, the person can become sick and contagious. That’s why early 
+    diagnosis and treatment are so important, even for those without symptoms.
+  </p>
+</section>
+
+    </div>
+
+    <div class="info-buttons">
+      <button onclick="openModal('modalSymptoms')">Symptoms</button>
+      <button onclick="openModal('modalCauses')">Causes</button>
+      <button onclick="openModal('modalPrevention')">Prevention</button>
+      <button onclick="openModal('modalTreatment')">Treatment</button>
+      <button onclick="openModal('modalDiagnosis')">Diagnosis</button>
+    </div>
+  </div>
+
+  <!-- SYMPTOMS MODAL -->
+  <div id="modalSymptoms" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modalSymptoms')">&times;</span>
+      <h2>Symptoms</h2>
+      <img src="img/pogi.jfif" alt="TB Symptoms">
+      <ul>
+        <h3>Symptoms of tuberculosis
+Active TB symptoms include:
+        </h3>
+        <li><h4>cough (lasting longer than two weeks)</h4></li>
+        <li><h4>Chest pain when breathing or coughing</h4></li>
+        <li><h4>Coughing up blood or sputum (mucus)</h4></li>
+        <li><h4>Fatigue or weakness</h4></li>
+        <li><h4>Loss of appetite</h4></li>
+        <li><h4>Fever, night sweats, chills</h4></li>
+        <li><h4>nexplained weight loss</h4></li>
+
+        <p>Note: You won’t have symptoms if you have inactive TB. But you might have a positive TB test.</p>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CAUSES MODAL -->
+  <div id="modalCauses" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modalCauses')">&times;</span>
+      <h2>Causes</h2>
+      <img src="img/causes.jpg" alt="TB Bacteria">
+      <p>
+        <h4>
+        TB is caused by <i>Mycobacterium tuberculosis</i>. The germs spread through the air and can infect your lungs when you breathe them in. 
+        Sometimes, they also infect other parts of your body.
+        </h4>
+      </p>
+
+      <h3>TYPES INCLUDE :</h3>
+      <li>Meningitis, an inflammation of the lining of your brain</li>
+      <li>Pott’s disease, also called spinal tuberculosis or tuberculosis spondylitis</li>
+      <li>Addison’s disease, an adrenal gland condition</li>
+      <li>Hepatitis, liver inflammation</li>
+      <li>Scrofula, swollen lymph nodes in your neck</li>
+      <p><div class="info-buttons"><button onclick="openModal('modalTBSpread')">How Does tuberculosis spread?</button></div></p>
+    </div>
+  </div>
+
+  <!-- TB SPREAD MODAL -->
+  <div id="modalTBSpread" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modalTBSpread')">&times;</span>
+      <h2>How Does tuberculosis spread?</h2>
+      <img src="img/malufit.jpg" alt="TB Spread">
+      <section style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 1rem;">
+  <h2 style="color: #00695c;">How TB Spreads</h2>
+  <ul style="background-color: #f1f1f1; padding: 1rem 1.5rem; border-radius: 8px; list-style: disc;">
+    <li style="margin-bottom: 0.8rem;">
+      <strong>Tuberculosis (TB)</strong> spreads through the air when someone with <strong>active TB in their lungs</strong> coughs, sneezes, speaks, laughs, or sings.
+    </li>
+    <li style="margin-bottom: 0.8rem;">
+      Only individuals with an active lung infection can transmit the disease to others.
+    </li>
+    <li style="margin-bottom: 0.8rem;">
+      Usually, <strong>close and prolonged exposure</strong> is needed for transmission — casual contact is less likely to cause infection.
+    </li>
+    <li>
+      Many people who inhale TB bacteria are able to fight off the infection before it becomes active, resulting in what’s called <strong>latent TB</strong> — the bacteria remain in the body but cause no symptoms and cannot be spread to others.
+    </li>
+  </ul>
+</section>
+
+
+    </div>
+  </div>
+
+  <!--Diagnosis MODAL -->
+  <div id="modalDiagnosis" class="modal" style="display: none;">
+  <div class="modal-content" style="max-width: 900px; max-height: 90vh; overflow-y: auto; margin: 5% auto; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+    
+    <span class="close" onclick="closeModal('modalDiagnosis')" style="float: right; font-size: 24px; font-weight: bold; cursor: pointer;">&times;</span>
+    
+    <h2 style="color: #00695c;">How Does Tuberculosis Spread?</h2>
+    <img src="img/xray.jpg" alt="Diagnosis" style="width: 100%; max-height: 500px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+
+    <h3 style="color: #00695c;">Diagnosis</h3>
+    <ul style="background-color: #f9f9f9; padding: 1.2rem 1.5rem; border-left: 5px solid #009688; border-radius: 8px; list-style: disc; line-height: 1.7; color: #444;">
+      <li><strong>Medical Evaluation</strong> – The doctor checks for symptoms such as a long-lasting cough, fever, night sweats, and weight loss.</li>
+      <li><strong>TB Skin Test or Blood Test</strong> – These tests help detect if a person has been infected with TB bacteria.</li>
+      <li><strong>Chest X-ray</strong> – This imaging test looks for signs of TB in the lungs.</li>
+      <li><strong>Sputum Test</strong> – A sample of mucus from the lungs is examined in the lab to confirm if TB bacteria are present.</li>
+    </ul>
+    
+  </div>
+</div>
+
+  <!-- PREVENTION MODAL -->
+  <div id="modalPrevention" class="modal" style="display: none;">
+  <div class="modal-content" style="max-width: 900px; max-height: 90vh; overflow-y: auto; margin: 5% auto; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+    <span class="close" onclick="closeModal('modalPrevention')" style="float: right; font-size: 24px; font-weight: bold; cursor: pointer;">&times;</span>
+
+    <h2 style="color: #00695c;">Prevention</h2>
+    <img src="img/prevention.jpg" alt="TB Vaccine" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+
+    <section style="font-family: Arial, sans-serif; padding: 0;">
+      <h2 style="color: #00695c; font-size: 24px;">Can Tuberculosis Be Prevented?</h2>
+      <h4 style="color: #333;">You can reduce your risk of contracting and spreading TB by:</h4>
+      <ul style="background-color: #f9f9f9; padding: 1.2rem 1.5rem; border-left: 5px solid #009688; border-radius: 8px; list-style: disc; line-height: 1.7; color: #444;">
+        <li><strong>Washing your hands</strong> thoroughly and often</li>
+        <li><strong>Coughing into your elbow</strong> or covering your mouth when you cough</li>
+        <li><strong>Avoiding close contact</strong> with other people</li>
+        <li><strong>Taking all medications</strong> exactly as prescribed</li>
+        <li><strong>Not returning to work or school</strong> until cleared by your healthcare provider</li>
+      </ul>
+
+      <h3 style="margin-top: 2rem; color: #00695c;">Is There a Vaccine for Tuberculosis?</h3>
+      <p style="font-size: 16px; color: #444; line-height: 1.7;">
+        Yes, the <strong>BCG (Bacillus Calmette–Guérin)</strong> vaccine is available and routinely given to newborns in the Philippines as part of the government’s immunization program. It helps protect young children from serious forms of TB, such as TB meningitis and miliary TB.
+      </p>
+
+      <p style="font-size: 16px; color: #444; line-height: 1.7;">
+        However, like in many countries, the BCG vaccine is <strong>less effective at preventing pulmonary TB in adults</strong>. This is why early detection and proper treatment remain key strategies in controlling tuberculosis across the country.
+      </p>
+    </section>
+  </div>
+</div>
+
+
+  <!-- TREATMENT MODAL -->
+  <div id="modalTreatment" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modalTreatment')">&times;</span>
+      <h2>Treatment</h2>
+<img src="img/bcg.jpg" alt="TB Medication" style="max-width: 100%; height: 300px; object-fit: cover;">
+      <h2>How is tuberculosis treated?</h2>
+      <p>
+       Healthcare providers treat both active and inactive tuberculosis with specific kinds of antibiotics. You’ll likely need to take a combination of medications to get rid of the infection.
+You’ll have to take these medications for a long time — several months. You must take them exactly as your provider prescribes to get rid of all the bacteria. It’s very important to finish your entire prescription.
+
+      </p>
+
+      <h2>TB medications include:</h2>
+      <li>Isoniazid (Hyzyd®)</li>
+      <li>Rifampin (Rifadin®)</li>
+      <li>Ethambutol (Myambutol®)</li>
+      <li>Pyrazinamide (Zinamide®)</li>
+      <li>Rifapentine (Priftin®)</li>
+      
+    <h3>Recovery time</h3>
+    <p>You might start having more energy and fewer symptoms within a few weeks of starting treatment. But it’ll take longer than that to complete it. You’ll need to take your medications for at least six to nine months.</p>
+
+    <h3>When should I see my healthcare provider?</h3>
+    <p>If you’ve been exposed to TB, you should talk to your healthcare provider right away. They can talk to you about options for getting tested. It’s important to get tested if you’ve developed any symptoms — you could pass TB on to others.
+If you’re taking medications to treat TB, talk to your provider about any side effects. Some side effects can be serious.
+
+</p>
+
+    </div>
+  </div>
+
+  <footer>
+    &copy;  2025 |
+This website was created as a school project for Our Lady of Fatima University (OLFU), under the subject Nursing Informatics.
+
+  </footer>
+
+<footer><div class="info-buttons"><button onclick="openModal('modalAbout')">About this project</button></div></footer>
+
+<!--modalAbout-->
+<div id="modalAbout" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalAbout')">&times;</span>
+        <h1>About this project</h1>
+        <p>
+        <img src="img\about.jpg" alt="About ">
+        </p>
+    </div>
+</div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = "block";
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    // Close modal on outside click
+    window.onclick = function(event) {
+      document.querySelectorAll('.modal').forEach(function(modal) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
